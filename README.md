@@ -1,1 +1,2 @@
-# JS-little-projects
+# JS Projects
+
