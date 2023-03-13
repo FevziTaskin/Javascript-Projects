@@ -20,6 +20,8 @@ const game = () => {
     const playerHand = document.querySelector(".player-hand");
     const computerHand = document.querySelector(".computer-hand");
     const hands = document.querySelectorAll(".hands img");
+    //Update Text
+    const winner = document.querySelector(".winner");
 
     hands.forEach((hand) => {
       hand.addEventListener("animationend", function () {
@@ -38,11 +40,12 @@ const game = () => {
 
         setTimeout(() => {
           // Calling compareHands function
-          compareHands(this.textContent, computerChoice);
+          compareHands(this.textContent, computerChoice, winner);
 
           // Update images
           playerHand.src = `./assets/${this.textContent}.png`;
           computerHand.src = `./assets/${computerChoice}.png`;
+          updateScore();
         }, 2000);
 
         // Animations
@@ -58,13 +61,13 @@ const game = () => {
     const computerScore = document.querySelector(".computer-score p");
     playerScore.textContent = pScore;
     computerScore.textContent = cScore;
+    if (pScore === 5 || cScore === 5) {
+      endGame();
+    }
   };
 
   // Compare hands
-  const compareHands = (playerChoice, computerChoice) => {
-    // Update text of winner
-    const winner = document.querySelector(".winner");
-
+  const compareHands = (playerChoice, computerChoice, winner) => {
     // Checking for a tie
     if (playerChoice === computerChoice) {
       winner.textContent = "It is a tie!";
@@ -76,12 +79,10 @@ const game = () => {
       if (computerChoice === "scissors") {
         winner.textContent = "Player wins!";
         pScore++;
-        updateScore();
         return;
       } else {
         winner.textContent = "Computer wins!";
         cScore++;
-        updateScore();
         return;
       }
     }
@@ -91,12 +92,10 @@ const game = () => {
       if (computerChoice === "scissors") {
         winner.textContent = "Computer wins!";
         cScore++;
-        updateScore();
         return;
       } else {
         winner.textContent = "Player wins!";
         pScore++;
-        updateScore();
         return;
       }
     }
@@ -106,23 +105,50 @@ const game = () => {
       if (computerChoice === "rock") {
         winner.textContent = "Computer wins!";
         cScore++;
-        if (cScore == 3) {
-          cScore = 0;
-          finishGame();
-        }
-        updateScore();
         return;
       } else {
         winner.textContent = "Player wins!";
         pScore++;
-        if (pScore == 3) {
-          pScore = 0;
-          finishGame();
-        }
-        updateScore();
         return;
       }
     }
+  };
+
+  // END Screen
+  const endGame = () => {
+    const endScreen = document.querySelector(".end");
+    const startOver = document.querySelector(".end button");
+    const endMessage = document.querySelector(".end h1");
+    const matchScreen = document.querySelector(".match");
+    const textMessage = document.querySelector(".winner");
+
+    if (pScore > cScore) {
+      endMessage.textContent = "Player Wins!!!";
+    } else if (pScore < cScore) {
+      endMessage.textContent = "Computer Wins :(";
+    } else {
+      endMessage.textContent = "Its a Tie !!!";
+    }
+    matchScreen.classList.remove("fadeIn");
+    endScreen.classList.add("fadeIn");
+
+    startOver.addEventListener("click", () => {
+      resetGame();
+      matchScreen.classList.add("fadeIn");
+      endScreen.classList.remove("fadeIn");
+      textMessage.textContent = "Choose an option";
+    });
+  };
+
+  // reset Game
+  const resetGame = () => {
+    pScore = 0;
+    cScore = 0;
+    const playerHand = document.querySelector(".player-hand");
+    const computerHand = document.querySelector(".computer-hand");
+    playerHand.src = `./assets/rock.png`;
+    computerHand.src = `./assets/rock.png`;
+    updateScore();
   };
 
   // Call all the inner functions
