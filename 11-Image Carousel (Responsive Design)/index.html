@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Image Carousel</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image fade">
+        <img src="./images/Lam0.jpg" alt="lam0" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam1.jpg" alt="lam1" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam2.jpg" alt="lam2" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam3.jpg" alt="lam3" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam4.jpg" alt="lam4" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam5.jpg" alt="lam5" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam6.jpg" alt="lam6" width="100%" />
+      </div>
+      <div class="image fade">
+        <img src="./images/Lam7.jpg" alt="lam7" width="100%" />
+      </div>
+
+      <i class="fas fa-chevron-left" onclick="showImage(-1)" id="prev"></i>
+      <i class="fas fa-chevron-right" onclick="showImage(+1)" id="next"></i>
+
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
