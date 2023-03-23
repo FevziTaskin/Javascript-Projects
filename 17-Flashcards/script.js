@@ -1,4 +1,4 @@
-let contentArray = localStorage.getItem("items")
+var contentArray = localStorage.getItem("items")
   ? JSON.parse(localStorage.getItem("items"))
   : [];
 
